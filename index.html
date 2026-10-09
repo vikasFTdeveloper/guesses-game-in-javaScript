@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>practies</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body style="background-color: #212121; color: #fff;">
+
+   <div id="wrapper">
+     <h1>number guesses GAME  </h1>
+        <P>try and guess a random number between  1 and 100.</P>
+        <P>you have 10 attempts to guess the right number</P>
+   </br>
+   
+        <form class="form">
+                <label for="guessField" id="guess">GUESS NUMBER</label>
+                <input type="text" id="guessField" class="guessfield">
+                <input type="submit" id="subt" value="submit guess" class="guessSubmit ">
+        </form>
+
+        <div class="resultparas">
+
+                <p>pervious guess <span class="guesses"></span></p>
+                <p>guesses Remaining <span class="lastResult">10</span></p>
+                <p class="lowOrHi"></p>
+
+        </div>
+
+
+                        <!-- Alert style html  -->
+
+        <div id="alertOverlay" class="alert-overlay" hidden>
+        <div class="alert-box" role="alertdialog" aria-labelledby="alertTitle" aria-describedby="alertMsg">
+                <h2 id="alertTitle" class="alert-title">Oops!</h2>
+                <p id="alertMsg" class="alert-msg"></p>
+                <button id="alertOk" class="alert-btn">Got it</button>
+        </div>
+        </div>
+
+   </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,285 @@
+
+
+/* Number Guessing Game — style.css */
+
+:root {
+  --bg: #212121;
+  --panel: #2b2b2b;
+  --panel-edge: #3a3a3a;
+  --text: #f2efe9;
+  --muted: #a8a39a;
+  --accent: #ffb703;      /* marigold */
+  --accent-dark: #e09f00;
+  --hot: #ff6b6b;         /* too high / game over */
+  --cool: #4cc9f0;        /* too low */
+  --win: #6bd68a;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  font-family: "Trebuchet MS", "Segoe UI", system-ui, sans-serif;
+  line-height: 1.5;
+}
+
+#wrapper {
+  width: 100%;
+  max-width: 460px;
+  background: var(--panel);
+  border: 1px solid var(--panel-edge);
+  border-radius: 16px;
+  padding: 36px 32px 32px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
+}
+
+h1 {
+  margin: 0 0 12px;
+  font-size: 2rem;
+  line-height: 1.15;
+  letter-spacing: 0.5px;
+  text-transform: capitalize;
+  color: var(--accent);
+}
+
+#wrapper > p {
+  margin: 0 0 4px;
+  color: var(--muted);
+  font-size: 0.98rem;
+}
+
+/* ---------- Form ---------- */
+
+.form {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  margin: 28px 0 24px;
+}
+
+#guess {
+  flex-basis: 100%;
+  font-weight: 700;
+  font-size: 0.9rem;
+  letter-spacing: 1px;
+  color: var(--text);
+}
+
+.guessfield {
+  flex: 1;
+  min-width: 0;
+  padding: 12px 14px;
+  font-size: 1.2rem;
+  color: var(--text);
+  background: #1a1a1a;
+  border: 2px solid var(--panel-edge);
+  border-radius: 10px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.guessfield:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 4px rgba(255, 183, 3, 0.18);
+}
+
+.guessSubmit {
+  padding: 12px 20px;
+  font-size: 1rem;
+  font-weight: 700;
+  font-family: inherit;
+  color: #1a1a1a;
+  background: var(--accent);
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
+}
+
+.guessSubmit:hover {
+  background: var(--accent-dark);
+}
+
+.guessSubmit:active {
+  transform: scale(0.96);
+}
+
+.guessSubmit:focus-visible {
+  outline: 3px solid var(--text);
+  outline-offset: 3px;
+}
+
+.guessSubmit:disabled,
+.guessfield:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+/* ---------- Results ---------- */
+
+.resultparas {
+  padding-top: 20px;
+  border-top: 1px solid var(--panel-edge);
+}
+
+.resultparas p {
+  margin: 0 0 10px;
+  color: var(--muted);
+}
+
+.guesses {
+  display: inline-block;
+  margin-left: 6px;
+  color: var(--text);
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.lastResult {
+  display: inline-block;
+  min-width: 2ch;
+  margin-left: 6px;
+  padding: 1px 10px;
+  color: #1a1a1a;
+  font-weight: 700;
+  text-align: center;
+  background: var(--accent);
+  border-radius: 999px;
+}
+
+.lowOrHi {
+  min-height: 1.5em;
+  margin-top: 16px;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--cool);
+}
+
+/* ---------- Result colours set from JS (script.js) ----------
+   e.g. resultParas.style.backgroundColor is not needed;
+   if you add these classes in JS, they will colour the message. */
+.lowOrHi.high { color: var(--hot); }
+.lowOrHi.low  { color: var(--cool); }
+.lowOrHi.win  { color: var(--win); }
+
+/* ---------- Mobile ---------- */
+
+@media (max-width: 480px) {
+  #wrapper {
+    padding: 28px 20px 24px;
+  }
+
+  h1 {
+    font-size: 1.6rem;
+  }
+
+  .guessSubmit {
+    flex: 1 0 100%;
+  }
+}
+              /* page button style  */
+
+#newGame {
+  padding: 12px 28px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.4);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+#newGame:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(99, 102, 241, 0.5);
+}
+
+#newGame:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 6px rgba(99, 102, 241, 0.4);
+}
+
+
+
+/* ---------- Custom Alert ---------- */
+
+.alert-overlay {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(4px);
+  z-index: 1000;
+}
+
+.alert-overlay[hidden] {
+  display: none;
+}
+
+.alert-box {
+  width: 100%;
+  max-width: 340px;
+  padding: 28px 24px 24px;
+  text-align: center;
+  background: var(--panel);
+  border: 1px solid var(--panel-edge);
+  border-top: 5px solid var(--hot);
+  border-radius: 14px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+  animation: alertPop 0.22s ease-out;
+}
+
+.alert-box.success { border-top-color: var(--win); }
+.alert-box.info    { border-top-color: var(--cool); }
+
+.alert-title {
+  margin: 0 0 8px;
+  font-size: 1.4rem;
+  color: var(--text);
+}
+
+.alert-msg {
+  margin: 0 0 22px;
+  color: var(--muted);
+}
+
+.alert-btn {
+  padding: 10px 28px;
+  font-size: 1rem;
+  font-weight: 700;
+  font-family: inherit;
+  color: #1a1a1a;
+  background: var(--accent);
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
+}
+
+.alert-btn:hover { background: var(--accent-dark); }
+.alert-btn:active { transform: scale(0.95); }
+.alert-btn:focus-visible {
+  outline: 3px solid var(--text);
+  outline-offset: 3px;
+}
+
+@keyframes alertPop {
+  from { opacity: 0; transform: scale(0.9) translateY(10px); }
+  to   { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .alert-box { animation: none; }
+}
